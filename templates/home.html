@@ -1,0 +1,98 @@
+{% extends "base.html" %} {% block content %}
+<div style="margin-top:50px">
+  <div></div>
+  {% if feedback %}
+  <div class="alert alert-success fade show" role="alert" style="margin:20px 100px">
+    <strong>Thank you for your feedback!</strong> Our model will be improved soon.
+  </div>
+  {% endif%}
+
+  {% if probability %}
+  <div style="width:210px;background-color:#fff;padding-bottom:10px; display:inline-block;padding-bottom:10px;margin-bottom:10px;border-radius:100px;border:solid 10px rgb(214, 69, 65);" class="animated bounce"> 
+    {% if probability.apple %} 
+    <div class="item">
+      <div class="apple"></div>
+      <div style="padding-top:120px;" class="text-percentage">{{probability.apple}}%</div>
+    </div>
+    {% endif%}
+    {% if probability.banana %} 
+    <div class="item">
+      <div class="banana"></div>
+      <div class="banana-line"></div>
+   </div>
+    <div class="text-percentage">{{probability.banana}}%</div>
+    {% endif%}
+    {% if probability.cherry %} 
+    <div class="item" style="position:relative;">
+      <div class="cherry cherry1"></div>
+      <div class="cherry cherry2"></div>
+      <div class="cherry-join"></div>
+    </div>
+    <div class="text-percentage">{{probability.cherry}}%</div>
+    {% endif%}
+  </div>
+    {% if (probability.cherry or probability.banana) %} 
+    <form action="/" method="POST" enctype="multipart/form-data">
+      <input name="text" value="{{filename}}, apple" class="d-none">
+      <input type="submit" class="wrong correction_btn" value="Was it a apple?" id="snd" style=""/>
+    </form>
+    {% endif%}
+    {% if (probability.apple or probability.cherry) %} 
+    <form action="/" method="POST" enctype="multipart/form-data" style="margin-top:10px">
+      <input name="text" value="{{filename}}, banana" class="d-none">
+      <input type="submit" class="wrong correction_btn" value="Was it a banana?" id="snd" style=""/>
+      </form>
+    {% endif%}
+    {% if (probability.apple or probability.banana) %} 
+    <form action="/" method="POST" enctype="multipart/form-data" style="margin-top:10px">
+      <input name="text" value="{{filename}}, cherry" class="d-none">
+      <input type="submit" class="wrong correction_btn" value="Was it a cherry?" id="snd" style=""/>
+      </form>
+    {% endif%}
+
+  {% endif%}
+
+
+  {% if filename %}
+
+
+  <img
+    class="pred_img"
+    style="max-height:200px; margin:50px; border-radius:100px;border:solid 10px rgb(214, 69, 65);"
+    src="{{ url_for('uploader.send_file', filename=filename)}}"
+  />
+
+  {% else %}
+  <div style="background:white;display:inline-block; margin: 200px 0px 30px ; border-radius:100px;padding:10px 30px;border:solid 10px rgb(214, 69, 65);">
+    <div class="item">
+      <div class="apple"></div>
+    </div>
+  
+    <div class="item">
+      <div class="banana"></div>
+      <div class="banana-line"></div>
+   </div>
+  
+    <div class="item" style="position:relative;">
+      <div class="cherry cherry1"></div>
+      <div class="cherry cherry2"></div>
+      <div class="cherry-join"></div>
+    </div>
+  </div>
+
+
+  {% endif %}
+
+  <form action="/uploader" method="POST" enctype="multipart/form-data">
+    <input type="file" id="file" name="file" />
+    <div class="new_Btn" style="width: 180px;">
+      <div class="text-select">Select a picture</div> 
+      <div class="spinner-border text-dark d-none" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    </div>
+    <input type="submit" class="button" value="Send" id="send" />
+  </form>
+</div>
+{% endblock %}
