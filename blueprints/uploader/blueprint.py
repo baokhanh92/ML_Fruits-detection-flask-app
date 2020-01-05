@@ -7,11 +7,13 @@ import os
 
 UPLOAD_FOLDER = 'uploads'
 
-model = tf.keras.models.load_model('models/model.h5')
+# model = tf.keras.models.load_model('models/model.h5')
+model = tf.keras.models.load_model('models/fruit.h5')
 
 uploader = Blueprint('uploader', __name__)
 
-IMAGE_SIZE = 100
+# IMAGE_SIZE = 100
+IMAGE_SIZE = 224
 
 
 @uploader.route('/uploader', methods=['GET', 'POST'])
