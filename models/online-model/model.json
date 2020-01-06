@@ -2369,7 +2369,7 @@
         { "name": "dense_1/kernel", "shape": [64, 3], "dtype": "float32" },
         { "name": "dense_1/bias", "shape": [3], "dtype": "float32" },
         {
-          "name": "conv1_1/kernel",
+          "name": "conv1/kernel",
           "shape": [3, 3, 3, 32],
           "dtype": "float32"
         },
