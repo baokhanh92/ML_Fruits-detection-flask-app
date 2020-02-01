@@ -1,5 +1,4 @@
-# [Machine learning-Fruits detection app]()
----
+
 ## [ 1. OVERVIEW ]()
 [ **1.1 About the data**: ]() 
 
